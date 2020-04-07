@@ -34,6 +34,26 @@ def assoliments(df):
     df['Repre1'] = df['Repre'].apply(lambda x: 'AE' if x >= 3.5 else 'AN' if x >=2.5 else 'AS' if x>=1.75 else 'NA' )
     return
 
+def posar_notes(df,classe):
+    # Define which mark would be in.
+    Examen_nom = input('Què vols avaluar de la prova (E: Examen, P: Prova, Q:questionari)   ').upper()
+    Examen_nom = Examen_nom[0]
+    #define alumns
+    AlumnesPN=df['NOM'].tolist()
+
+    #Define mark counter for set
+    contador=[]
+    for ite1 in list(df.columns.values):
+        contador.append(ite1[1:3])
+    del contador[:2]
+    contador2=[]
+    for ite1 in contador:
+        contador2.append(''.join(i for i in ite1 if i.isdigit()))
+    contador2 = list(map(int, contador2))
+
+    #Export it
+    df.to_csv(ALUMNAT[classe],index=False)
+    return(df)
 
 def main():
     while True:
