@@ -16,8 +16,16 @@ def get_filters():
     print('-'*40)
     return classe.lower()
 
-def assoliments(df):
+def assoliments(df,interv):
+    interv = [x+0.5 for x in interv]
     # if a mark is not there, fills no marks with a 0
+    df=df.fillna(0)
+    #look up for Exams, not questionaris not proves
+    contE = []
+    for ite1 in list(df.columns.values):
+        if ite1[:1] =='E':
+            contE.append(ite1)
+        
     df['E1-C']=df['E1-C'].fillna(0)
     df['E2-C']=df['E2-C'].fillna(0)
     df['E3-C']=df['E3-C'].fillna(0)
